@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to left,#4169e1,#ffc0cb);
+            margin: 0;
+        }
+
+        .login-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 320px;
+            text-align: center;
+        }
+
+        .login-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 35px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: #007BFF;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007BFF;
+            border: none;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .forgot-password {
+            display: block;
+            margin-top: 10px;
+            font-size: 0.875rem;
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 0.875em;
+            margin-top: 10px;
+        }
+
+        .success-message {
+            color: green;
+            font-size: 0.875em;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <span class="toggle-password" onclick="togglePassword()">👁</span>
+            </div>
+            <button type="submit">Login</button>
+            <a href="#" class="forgot-password">Forgot your password?</a>
+            <p id="error-message" class="error-message"></p>
+        </form>
+    </div>
+
+    <script>
+        function togglePassword() {
+            var passwordField = document.getElementById('password');
+            var passwordType = passwordField.type === 'password' ? 'text' : 'password';
+            passwordField.type = passwordType;
+        }
+
+        // Form validation and login logic
+        const loginForm = document.getElementById('loginForm');
+        const errorMessage = document.getElementById('error-message');
+
+        loginForm.addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent form from submitting
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Basic validation (you can add more sophisticated checks if needed)
+            if (!username.trim()) {
+                errorMessage.textContent = "Please enter a username.";
+                return;
+            }
+
+            if (!password.trim()) {
+                errorMessage.textContent = "Please enter a password.";
+                return;
+            }
+
+            // Example of dynamic login validation (for demonstration purposes)
+            // You can replace this with your own backend validation logic
+            // For dynamic example, any username/password combination is accepted
+            if (username && password) {
+                // Redirect to index.html upon success (adjust as needed)
+                window.location.href = "index.html";
+            } else {
+                errorMessage.textContent = "Invalid username or password.";
+            }
+        });
+    </script>
+</body>
+</html>
